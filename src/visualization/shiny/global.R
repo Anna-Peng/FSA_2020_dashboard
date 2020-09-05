@@ -31,9 +31,9 @@ IN_MD_PLATFORMS <- "desc_platforms.md"
 IN_MD_RESTAURANTS <- "desc_restaurants.md"
 IN_MD_ECOSYSTEM <- "desc_ecosystem.md"
 IN_MD_SOCIAL <- "desc_social.md"
-IN_ECO_NODES <- "../../../data/raw/ecosys_nodes.txt"
-IN_ECO_EDGES <- '../../../data/raw/ecosys_edges.txt'
-IN_ECO_SPECS <- '../../../data/raw/ecosys_specifications.txt'
+IN_ECO_NODES <- "ecosys_nodes.txt"
+IN_ECO_EDGES <- 'ecosys_edges.txt'
+IN_ECO_SPECS <- 'ecosys_specifications.txt'
 IN_FOOD_DICT <- "FoodDictionary_editable.csv"
 IN_OMITTED_WORDS <- "OmittedWords_editable.csv"
 
