@@ -1,0 +1,44 @@
+name: CI (conda)
+on:
+  push:
+    branches: 
+      - master
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        os: ['ubuntu-latest']
+        python-version: [3.7]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Cache conda
+        uses: actions/cache@v1
+        with:
+          path: ~/conda_pkgs_dir
+          key: conda-${{ matrix.os }}-python-${{ matrix.python-version }}-${{ hashFiles('environment.yml') }}
+      - name: Setup Miniconda
+        uses: goanpeca/setup-miniconda@v1
+        with:
+          auto-update-conda: true
+          auto-activate-base: false
+          activate-environment: foobar-dashboard
+          python-version: ${{ matrix.python-version }}
+          channels: defaults,conda-forge, bioconda, r
+          environment-file: environment.yml
+          use-only-tar-bz2: true
+      - name: Install from source
+        # This is required for the pre-commit tests
+        shell: pwsh
+        run: pip install -e .
+      - name: Conda list
+        shell: pwsh
+        run: conda list
+      - name: Test with pytest
+        shell: pwsh
+        run: pytest --cov=./ --cov-report=xml
+      - name: Upload coverage
+        uses: codecov/codecov-action@v1
+        if: ${{ matrix.os != 'windows-latest' }}
