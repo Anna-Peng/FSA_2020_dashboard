@@ -1,0 +1,13 @@
+platforms/
+build*
+dist*
+foobar.egg*
+.DS_Store
+.ipynb_checkpoints
+__pycache__
+data/interim/*
+data/processed/*
+.FHRS-cache
+.vscode
+.Rapp.history
+.Rhistory
