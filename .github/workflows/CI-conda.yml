@@ -21,6 +21,8 @@ jobs:
           key: conda-${{ matrix.os }}-python-${{ matrix.python-version }}-${{ hashFiles('environment.yml') }}
       - name: Setup Miniconda
         uses: goanpeca/setup-miniconda@v1
+        env:
+          ACTIONS_ALLOW_UNSECURE_COMMANDS: 'true'
         with:
           auto-update-conda: true
           auto-activate-base: false
